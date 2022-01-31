@@ -1,0 +1,32 @@
+{% load widget_tweaks %}
+
+{% for field in form %}
+<div class="form-group">
+
+    {{field.label_tag}}
+    <!-- ! if field has no data  -->
+    {% if form.is_bound %}
+    <!-- TODO ERROR -->
+    {% if field.errors %}
+    {% render_field field  class="form-control is-invalid" %}
+
+    <!-- ! -->
+    {% for error in errors %}
+    <div class="color: red;"> {{error}}</div>
+    {% endfor %}
+    <!-- ! -->
+
+    {% else %}
+    {% render_field field  class="form-control is-valid" %}
+    {% endif %}
+    <!-- TODO ERROR -->
+    {% else %}
+    {% render_field field  class="form-control bg-danger" %}
+    {% endif %}
+    <!-- ! help text -->
+    {% if field.help_text %}
+    <small>{{field.help_text}}</small>
+    {% endif %}
+    <!-- !  -->
+</div>
+{% endfor %}

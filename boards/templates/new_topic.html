@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} New Topic {% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item ">
+    <a href="{% url 'index' %}">Boards</a></li>
+
+<li class="breadcrumb-item ">
+    <a href="{% url 'boards_topic'  board.pk %}"> {{board.name}}</a>
+</li>
+<li class="breadcrumb-item active"> New Topic </li>
+{% endblock %}
+
+{% block content  %}
+
+<!-- ! forms  -->
+
+<form method="POST" novalidate>
+    {% csrf_token %}
+    <!-- TODO  widget tweaks  'bootstrap in form' -->
+    {% include 'includes/form.html' %}
+    <!-- TODO  -->
+    <input type="submit" value="Sumbit" class="btn btn-primary">
+</form>
+
+{% endblock %}
